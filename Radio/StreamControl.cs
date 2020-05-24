@@ -422,8 +422,9 @@ namespace SDRSharp.Radio
                 _streamHookManager.InputSampleRate = _inputSampleRate;
             }
 
-            #endregion
+			#endregion
 
+			Utils.Log($"play() input type: {_inputType}");
             switch (_inputType)
             {
                 case InputType.SoundCard:
@@ -462,7 +463,10 @@ namespace SDRSharp.Radio
                     break;
             }
 
-            if (_streamHookManager != null)
+			Utils.Log($"_dspThread: {_dspThread.ManagedThreadId}");
+
+
+			if (_streamHookManager != null)
             {
                 _streamHookManager.Start();
             }

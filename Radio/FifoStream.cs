@@ -115,6 +115,7 @@ namespace SDRSharp.Radio
             {
                 foreach (var block in _blocks)
                     FreeBlock(block);
+
                 _blocks.Clear();
                 _readPos = 0;
                 _writePos = 0;
@@ -135,13 +136,9 @@ namespace SDRSharp.Radio
             if (_readEvent != null)
             {
                 while (_size == 0 && !_terminated)
-                {
                     _readEvent.WaitOne();
-                }
                 if (_terminated)
-                {
                     return 0;
-                }
             }
 
             int result;
@@ -153,9 +150,7 @@ namespace SDRSharp.Radio
             }
 
             if (_writeEvent != null)
-            {
                 _writeEvent.Set();
-            }
 
             return result;
         }
@@ -165,13 +160,9 @@ namespace SDRSharp.Radio
             if (_writeEvent != null)
             {
                 while (_size >= _maxSize && !_terminated)
-                {
                     _writeEvent.WaitOne();
-                }
                 if (_terminated)
-                {
                     return;
-                }
             }
 
             lock (this)

@@ -6,41 +6,44 @@ using SDRSharp.Radio;
 
 namespace SDRSharp
 {
-    public static class Program
-    {
-        [STAThread]
-        static void Main()
-        {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+	public static class Program
+	{
+		[STAThread]
+		static void Main()
+		{
+			Utils.Log("starting");
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32Windows || Environment.OSVersion.Platform == PlatformID.Win32NT)
-            {
-                var process = Process.GetCurrentProcess();
-                process.PriorityBoostEnabled = true;
-                process.PriorityClass = ProcessPriorityClass.RealTime;
-                Utils.TimeBeginPeriod(1);
-            }
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            DSPThreadPool.Initialize();
+			if (Environment.OSVersion.Platform == PlatformID.Win32Windows || Environment.OSVersion.Platform == PlatformID.Win32NT)
+			{
+				var process = Process.GetCurrentProcess();
+				process.PriorityBoostEnabled = true;
+				process.PriorityClass = ProcessPriorityClass.RealTime;
+				Utils.TimeBeginPeriod(1);
+			}
 
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Application.EnableVisualStyles();
-            Application.Run(new MainForm());
+			DSPThreadPool.Initialize();
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32Windows || Environment.OSVersion.Platform == PlatformID.Win32NT)
-            {
-                Utils.TimeEndPeriod(1);
-            }
+			Control.CheckForIllegalCrossThreadCalls = false;
+			Application.EnableVisualStyles();
+			Application.Run(new MainForm());
 
-            DSPThreadPool.Terminate();
+			if (Environment.OSVersion.Platform == PlatformID.Win32Windows || Environment.OSVersion.Platform == PlatformID.Win32NT)
+			{
+				Utils.TimeEndPeriod(1);
+			}
 
-            Application.Exit(); // ExtIO may have some thread still running preventing the program from terminating
-        }
+			DSPThreadPool.Terminate();
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            var exception = (Exception) e.ExceptionObject;
-            File.WriteAllText("crash.txt", exception.Message + "\r\n" + exception.StackTrace);
-        }
-    }
+			Application.Exit(); // ExtIO may have some thread still running preventing the program from terminating
+		}
+
+		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			var exception = (Exception) e.ExceptionObject;
+			File.WriteAllText("crash.txt", exception.Message + "\r\n" + exception.StackTrace);
+			Utils.Log($"crash: {exception.Message} {exception.StackTrace}");
+		}
+	}
 }

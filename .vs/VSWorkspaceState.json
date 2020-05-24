@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CollapsiblePanel",
+    "\\Common",
+    "\\FUNcube",
+    "\\Radio",
+    "\\RTLSDR",
+    "\\SDRIQ",
+    "\\SDRSharp",
+    "\\SoftRock",
+    "\\WavRecorder"
+  ],
+  "SelectedNode": "\\SDRSharp\\MainForm.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,12 @@
+D:\projects\sdrsharp\Debug\SDRSharp.Radio.dll
+D:\projects\sdrsharp\Debug\SDRSharp.Radio.pdb
+D:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.csprojAssemblyReference.cache
+D:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.dll
+D:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.pdb
+I:\projects\sdrsharp\Debug\SDRSharp.Radio.dll
+I:\projects\sdrsharp\Debug\SDRSharp.Radio.pdb
+I:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.csproj.CoreCompileInputs.cache
+I:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.dll
+I:\projects\sdrsharp\Radio\obj\x86\Debug\SDRSharp.Radio.pdb
+I:\projects\sdrsharp\out\SDRSharp.Radio.dll
+I:\projects\sdrsharp\out\SDRSharp.Radio.pdb

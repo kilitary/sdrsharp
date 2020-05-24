@@ -1,0 +1,15 @@
+D:\projects\sdrsharp\Debug\SDRSharp.Common.dll
+D:\projects\sdrsharp\Debug\SDRSharp.Common.pdb
+D:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.csprojAssemblyReference.cache
+D:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.csproj.CopyComplete
+D:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.dll
+D:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.pdb
+I:\projects\sdrsharp\Debug\SDRSharp.Common.dll
+I:\projects\sdrsharp\Debug\SDRSharp.Common.pdb
+I:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.csprojAssemblyReference.cache
+I:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.csproj.CoreCompileInputs.cache
+I:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.csproj.CopyComplete
+I:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.dll
+I:\projects\sdrsharp\Common\obj\x86\Debug\SDRSharp.Common.pdb
+I:\projects\sdrsharp\out\SDRSharp.Common.dll
+I:\projects\sdrsharp\out\SDRSharp.Common.pdb

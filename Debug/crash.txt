@@ -1,0 +1,6 @@
+The type initializer for 'PortAudioSharp.PortAudioAPI' threw an exception.
+   at PortAudioSharp.PortAudioAPI.Pa_GetDefaultInputDevice()
+   at SDRSharp.Radio.PortAudio.AudioDevice.GetDevices(DeviceDirection direction) in I:\projects\sdrsharp\Radio\PortAudio\AudioDevice.cs:line 18
+   at SDRSharp.MainForm.InitializeGUI() in I:\projects\sdrsharp\SDRSharp\MainForm.cs:line 430
+   at SDRSharp.MainForm..ctor() in I:\projects\sdrsharp\SDRSharp\MainForm.cs:line 399
+   at SDRSharp.Program.Main() in I:\projects\sdrsharp\SDRSharp\Program.cs:line 30

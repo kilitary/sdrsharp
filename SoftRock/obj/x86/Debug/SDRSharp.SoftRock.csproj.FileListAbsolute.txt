@@ -1,0 +1,15 @@
+D:\projects\sdrsharp\Debug\SDRSharp.SoftRock.dll
+D:\projects\sdrsharp\Debug\SDRSharp.SoftRock.pdb
+D:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.csprojAssemblyReference.cache
+D:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.csproj.CopyComplete
+D:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.dll
+D:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.pdb
+I:\projects\sdrsharp\Debug\SDRSharp.SoftRock.dll
+I:\projects\sdrsharp\Debug\SDRSharp.SoftRock.pdb
+I:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.csprojAssemblyReference.cache
+I:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.csproj.CoreCompileInputs.cache
+I:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.csproj.CopyComplete
+I:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.dll
+I:\projects\sdrsharp\SoftRock\obj\x86\Debug\SDRSharp.SoftRock.pdb
+I:\projects\sdrsharp\out\SDRSharp.SoftRock.dll
+I:\projects\sdrsharp\out\SDRSharp.SoftRock.pdb

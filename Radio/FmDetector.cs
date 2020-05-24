@@ -2,165 +2,165 @@
 
 namespace SDRSharp.Radio
 {
-    public enum FmMode
-    {
-        Narrow,
-        Wide
-    }
+	public enum FmMode
+	{
+		Narrow,
+		Wide
+	}
 
-    /// <summary>
-    /// The theory behind this code is in section 4.2.1
-    /// of http://www.digitalsignallabs.com/Digradio.pdf
-    /// </summary>
-    public unsafe sealed class FmDetector
-    {
-        private const float NarrowAFGain = 0.5f;
-        private const float FMGain = 0.00001f;
-        private const float TimeConst = 0.000001f;
-        
-        private const int MinHissFrequency = 4000;
-        private const int MaxHissFrequency = 6000;
-        private const int HissFilterOrder = 20;
-        private const float HissFactor = 0.00002f;
+	/// <summary>
+	/// The theory behind this code is in section 4.2.1
+	/// of http://www.digitalsignallabs.com/Digradio.pdf
+	/// </summary>
+	public unsafe sealed class FmDetector
+	{
+		private const float NarrowAFGain = 0.5f;
+		private const float FMGain = 0.00001f;
+		private const float TimeConst = 0.000001f;
 
-        private readonly DcRemover* _dcRemoverPtr;
-        private readonly UnsafeBuffer _dcRemoverBuffer = UnsafeBuffer.Create(sizeof(DcRemover));
-        private float* _hissPtr;
-        private UnsafeBuffer _hissBuffer;
-        private FirFilter _hissFilter;
-        private Complex _iqState;
-        private float _noiseLevel;
-        private double _sampleRate;
-        private float _noiseAveragingRatio;
-        private int _squelchThreshold;
-        private bool _isSquelchOpen;
-        private float _noiseThreshold;
-        private FmMode _mode;
+		private const int MinHissFrequency = 4000;
+		private const int MaxHissFrequency = 6000;
+		private const int HissFilterOrder = 20;
+		private const float HissFactor = 0.00002f;
 
-        public FmDetector()
-        {
-            _dcRemoverPtr = (DcRemover*) _dcRemoverBuffer;
-            _dcRemoverPtr->Init(TimeConst);
-        }
+		private readonly DcRemover* _dcRemoverPtr;
+		private readonly UnsafeBuffer _dcRemoverBuffer = UnsafeBuffer.Create(sizeof(DcRemover));
+		private float* _hissPtr;
+		private UnsafeBuffer _hissBuffer;
+		private FirFilter _hissFilter;
+		private Complex _iqState;
+		private float _noiseLevel;
+		private double _sampleRate;
+		private float _noiseAveragingRatio;
+		private int _squelchThreshold;
+		private bool _isSquelchOpen;
+		private float _noiseThreshold;
+		private FmMode _mode;
 
-        public void Demodulate(Complex* iq, float* audio, int length)
-        {
-            for (var i = 0; i < length; i++)
-            {
-                // Polar discriminator
-                var f = iq[i] * _iqState.Conjugate();
+		public FmDetector()
+		{
+			_dcRemoverPtr = (DcRemover*)_dcRemoverBuffer;
+			_dcRemoverPtr->Init(TimeConst);
+		}
 
-                // Limiting
-                var m = f.Modulus();
-                if (m > 0.0f)
-                {
-                    f /= m;
-                }
+		public void Demodulate(Complex* iq, float* audio, int length)
+		{
+			for(var i = 0; i < length; i++)
+			{
+				// Polar discriminator
+				var f = iq[i] * _iqState.Conjugate();
 
-                // Angle estimate
-                var a = f.Argument();
+				// Limiting
+				var m = f.Modulus();
+				if(m > 0.0f)
+				{
+					f /= m;
+				}
 
-                // Scale
-                audio[i] = a * FMGain;
+				// Angle estimate
+				var a = f.Argument();
 
-                _iqState = iq[i];
-            }
-            //_dcRemoverPtr->Process(audio, length);
-            if (_mode == FmMode.Narrow)
-            {
-                ProcessSquelch(audio, length);
-                for (var i = 0; i < length; i++)
-                {
-                    audio[i] *= NarrowAFGain;
-                }
-            }
-        }
+				// Scale
+				audio[i] = a * FMGain;
 
-        private void ProcessSquelch(float* audio, int length)
-        {
-            if (_squelchThreshold > 0)
-            {
-                if (_hissBuffer == null || _hissBuffer.Length != length)
-                {
-                    _hissBuffer = UnsafeBuffer.Create(length, sizeof(float));
-                    _hissPtr = (float*) _hissBuffer;
-                }
+				_iqState = iq[i];
+			}
+			//_dcRemoverPtr->Process(audio, length);
+			if(_mode == FmMode.Narrow)
+			{
+				ProcessSquelch(audio, length);
+				for(var i = 0; i < length; i++)
+				{
+					audio[i] *= NarrowAFGain;
+				}
+			}
+		}
 
-                Utils.Memcpy(_hissPtr, audio, length * sizeof(float));
+		private void ProcessSquelch(float* audio, int length)
+		{
+			if(_squelchThreshold > 0)
+			{
+				if(_hissBuffer == null || _hissBuffer.Length != length)
+				{
+					_hissBuffer = UnsafeBuffer.Create(length, sizeof(float));
+					_hissPtr = (float*)_hissBuffer;
+				}
 
-                _hissFilter.Process(_hissPtr, length);
+				Utils.Memcpy(_hissPtr, audio, length * sizeof(float));
 
-                for (var i = 0; i < _hissBuffer.Length; i++)
-                {
-                    var n = (1 - _noiseAveragingRatio) * _noiseLevel + _noiseAveragingRatio * Math.Abs(_hissPtr[i]);
-                    if (!float.IsNaN(n))
-                    {
-                        _noiseLevel = n;
-                    }
-                    if (_noiseLevel > _noiseThreshold)
-                    {
-                        audio[i] = 0.0f;
-                    }
-                }
+				_hissFilter.Process(_hissPtr, length);
 
-                _isSquelchOpen = _noiseLevel < _noiseThreshold;
-            }
-            else
-            {
-                _isSquelchOpen = true;
-            }
-        }
+				for(var i = 0; i < _hissBuffer.Length; i++)
+				{
+					var n = (1 - _noiseAveragingRatio) * _noiseLevel + _noiseAveragingRatio * Math.Abs(_hissPtr[i]);
+					if(!float.IsNaN(n))
+					{
+						_noiseLevel = n;
+					}
+					if(_noiseLevel > _noiseThreshold)
+					{
+						audio[i] = 0.0f;
+					}
+				}
 
-        public float Offset
-        {
-            get { return _dcRemoverPtr->Offset; }
-        }
+				_isSquelchOpen = _noiseLevel < _noiseThreshold;
+			}
+			else
+			{
+				_isSquelchOpen = true;
+			}
+		}
 
-        public double SampleRate
-        {
-            get
-            {
-                return _sampleRate;
-            }
-            set
-            {
-                if (value != _sampleRate)
-                {
-                    _sampleRate = value;
-                    _noiseAveragingRatio = (float) (30.0 / _sampleRate);
-                    var bpk = FilterBuilder.MakeBandPassKernel(_sampleRate, HissFilterOrder, MinHissFrequency, MaxHissFrequency, WindowType.BlackmanHarris4);
-                    if (_hissFilter != null)
-                    {
-                        _hissFilter.Dispose();
-                    }
-                    _hissFilter = new FirFilter(bpk, 1);
-                    _dcRemoverPtr->Reset();
-                }
-            }
-        }
+		public float Offset
+		{
+			get { return _dcRemoverPtr->Offset; }
+		}
 
-        public int SquelchThreshold
-        {
-            get { return _squelchThreshold; }
-            set
-            {
-                if (_squelchThreshold != value)
-                {
-                    _squelchThreshold = value;
-                    _noiseThreshold = (float) Math.Log10(2 - _squelchThreshold/100.0) * HissFactor;
-                }
-            }
-        }
+		public double SampleRate
+		{
+			get
+			{
+				return _sampleRate;
+			}
+			set
+			{
+				if(value != _sampleRate)
+				{
+					_sampleRate = value;
+					_noiseAveragingRatio = (float)(30.0 / _sampleRate);
+					var bpk = FilterBuilder.MakeBandPassKernel(_sampleRate, HissFilterOrder, MinHissFrequency, MaxHissFrequency, WindowType.BlackmanHarris4);
+					if(_hissFilter != null)
+					{
+						_hissFilter.Dispose();
+					}
+					_hissFilter = new FirFilter(bpk, 1);
+					_dcRemoverPtr->Reset();
+				}
+			}
+		}
 
-        public bool IsSquelchOpen
-        {
-            get { return _isSquelchOpen; }
-        }
+		public int SquelchThreshold
+		{
+			get { return _squelchThreshold; }
+			set
+			{
+				if(_squelchThreshold != value)
+				{
+					_squelchThreshold = value;
+					_noiseThreshold = (float)Math.Log10(2 - _squelchThreshold / 100.0) * HissFactor;
+				}
+			}
+		}
 
-        public FmMode Mode
-        {
-            get { return _mode; }
-            set { _mode = value; }
-        }
-    }
+		public bool IsSquelchOpen
+		{
+			get { return _isSquelchOpen; }
+		}
+
+		public FmMode Mode
+		{
+			get { return _mode; }
+			set { _mode = value; }
+		}
+	}
 }

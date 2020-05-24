@@ -1,0 +1,16 @@
+D:\projects\sdrsharp\Debug\SDRSharp.FrequencyEdit.dll
+D:\projects\sdrsharp\Debug\SDRSharp.FrequencyEdit.pdb
+D:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.csprojAssemblyReference.cache
+D:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.Properties.Resources.resources
+D:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.csproj.GenerateResource.cache
+D:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.dll
+D:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.pdb
+I:\projects\sdrsharp\Debug\SDRSharp.FrequencyEdit.dll
+I:\projects\sdrsharp\Debug\SDRSharp.FrequencyEdit.pdb
+I:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.Properties.Resources.resources
+I:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.csproj.GenerateResource.cache
+I:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.csproj.CoreCompileInputs.cache
+I:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.dll
+I:\projects\sdrsharp\FrequencyEdit\obj\x86\Debug\SDRSharp.FrequencyEdit.pdb
+I:\projects\sdrsharp\out\SDRSharp.FrequencyEdit.dll
+I:\projects\sdrsharp\out\SDRSharp.FrequencyEdit.pdb

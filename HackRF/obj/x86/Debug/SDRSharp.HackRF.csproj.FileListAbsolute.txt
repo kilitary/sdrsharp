@@ -1,0 +1,17 @@
+D:\projects\sdrsharp\Debug\SDRSharp.HackRF.dll
+D:\projects\sdrsharp\Debug\SDRSharp.HackRF.pdb
+D:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.HackRFControllerDialog.resources
+D:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.csproj.GenerateResource.cache
+D:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.csproj.CopyComplete
+D:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.dll
+D:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.pdb
+I:\projects\sdrsharp\Debug\SDRSharp.HackRF.dll
+I:\projects\sdrsharp\Debug\SDRSharp.HackRF.pdb
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.HackRFControllerDialog.resources
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.csproj.GenerateResource.cache
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.csproj.CoreCompileInputs.cache
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.csproj.CopyComplete
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.dll
+I:\projects\sdrsharp\HackRF\obj\x86\Debug\SDRSharp.HackRF.pdb
+I:\projects\sdrsharp\out\SDRSharp.HackRF.dll
+I:\projects\sdrsharp\out\SDRSharp.HackRF.pdb
